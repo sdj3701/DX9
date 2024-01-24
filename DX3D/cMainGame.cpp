@@ -64,8 +64,8 @@ void cMainGame::SetUp_Line()
 {
 	ST_PC_VERTEX	v;
 	v.c = D3DCOLOR_XRGB(255, 0, 0);
-	v.p = D3DXVECTOR3(0, 0.5f, 0); m_vecLineVertex.push_back(v);
-	v.p = D3DXVECTOR3(0, -0.5f, 0); m_vecLineVertex.push_back(v);
+	v.p = D3DXVECTOR3(0, 2, 0); m_vecLineVertex.push_back(v);
+	v.p = D3DXVECTOR3(0, -2, 0); m_vecLineVertex.push_back(v);
 }
 
 void cMainGame::Draw_Line()
