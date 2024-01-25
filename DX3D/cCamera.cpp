@@ -57,6 +57,7 @@ void cCamera::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		m_ptPrevMouse.x = LOWORD(lParam);
 		m_ptPrevMouse.y = HIWORD(lParam);
 		m_isLButtonDown = true;
+		
 		break;
 	case WM_LBUTTONUP:
 		m_isLButtonDown = false;
@@ -83,7 +84,7 @@ void cCamera::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 		}
 		break;
-	case WM_MOUSEHWHEEL:
+	case WM_MOUSEWHEEL:
 		m_fCameraDistance -= (GET_WHEEL_DELTA_WPARAM(wParam) / 30.0f);
 		if (m_fCameraDistance < 0.0001f)
 			m_fCameraDistance = 0.0001f;

@@ -3,6 +3,7 @@
 //전방 선언
 class cCubePC;
 class cCamera;
+class cGrid;
 
 class cMainGame
 {
@@ -16,6 +17,7 @@ private:
 
 	cCubePC* m_pCubePC;
 	cCamera* m_pCamera;
+	cGrid*	 m_pGrid;
 
 public:
 	void SetUp();
