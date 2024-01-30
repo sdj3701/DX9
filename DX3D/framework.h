@@ -44,12 +44,43 @@ extern HWND g_hWnd;
 						return &instance; \
 				}
 
+#define Synthesize(varType, varName, funName) \
+			protected : varType varName; \
+			public: inline varType Get##funName(void) const { return varName; } \
+				public : inline void Set##funName(varType var) {varName = var; } 
+
+#define Synthesize_Pass_By_Ref(varType, varName, funName) \
+			protected : varType varName; \
+			public: inline varType& Get##funName(void) { return varName; } \
+				public : inline void Set##funName(varType& var) {varName = var; } 
+
 struct ST_PC_VERTEX
 {
 	//position color
 	D3DXVECTOR3 p;
 	D3DCOLOR	c;
 	enum {FVF = D3DFVF_XYZ | D3DFVF_DIFFUSE};
+};
+
+struct ST_PNT_VERTEX
+{
+	//position color
+	D3DXVECTOR3 p;
+	D3DXVECTOR3 n;
+	//텍스처
+	D3DXVECTOR2 t;
+
+	enum { FVF = D3DFVF_XYZ | D3DFVF_NORMAL | D3DFVF_TEX1 };
+};
+
+struct ST_PT_VERTEX
+{
+	//position color
+	D3DXVECTOR3 p;
+	//텍스처
+	D3DXVECTOR2 t;
+
+	enum { FVF = D3DFVF_XYZ | D3DFVF_TEX1 };
 };
 
 #include "cDeviceManager.h"
