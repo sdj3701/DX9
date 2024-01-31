@@ -10,12 +10,13 @@
 #include "cLeftLeg.h"
 
 cCubeMan::cCubeMan()
-	: m_pRoot(NULL)
+	: m_pRoot(NULL), m_pTexture(NULL)
 {
 }
 
 cCubeMan::~cCubeMan()
 {
+	Safe_Release(m_pTexture);
 	if (m_pRoot)
 		m_pRoot->Destroy();
 }
@@ -23,6 +24,9 @@ cCubeMan::~cCubeMan()
 void cCubeMan::Setup()
 {
 	cCharacter::Setup();
+
+	// : 텍스처 불러오기
+	D3DXCreateTextureFromFile(g_pD3DDevice, L"../image/batman.png", &m_pTexture);
 
 	// : material
 	ZeroMemory(&m_stMtl, sizeof(D3DMATERIAL9));
@@ -87,8 +91,13 @@ void cCubeMan::Render()
 		D3DXMatrixIdentity(&matWorld);
 		g_pD3DDevice->SetTransform(D3DTS_WORLD, &matWorld);
 
+		g_pD3DDevice->SetTexture(0, m_pTexture);
+
 		if (m_pRoot)
 			m_pRoot->Render();
+
+		// : 텍스쳐를 특정 부분을 그려주고 
+		g_pD3DDevice->SetTexture(0, NULL);
 
 		g_pD3DDevice->SetRenderState(D3DRS_LIGHTING, false);
 	}
